@@ -1,6 +1,7 @@
 package com.yashbonde.moviecatalogservice.Api;
 
 import com.yashbonde.moviecatalogservice.Model.CatalogItem;
+import com.yashbonde.moviecatalogservice.Model.Movie;
 import com.yashbonde.moviecatalogservice.Model.User;
 import com.yashbonde.moviecatalogservice.Service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,6 @@ public class MovieCatalogResource {
     @Autowired
     private CatalogService catalogService;
 
-    @RequestMapping("/{userId}")
-    public List<CatalogItem> getMovies(@PathVariable("userId") String userId){
-        return Collections.singletonList(
-                new CatalogItem("Transformers","Test",4)
-        );
-
-    }
-
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user){
@@ -34,5 +27,21 @@ public class MovieCatalogResource {
     @GetMapping("/getUser")
     public User getUser(@RequestParam("userName") String userName){
         return catalogService.getuser(userName);
+    }
+
+
+    @PostMapping("/addMovie")
+    public Movie addMovie(@RequestBody Movie movie){
+        return catalogService.addMovie(movie);
+    }
+
+    @GetMapping("/getMovie")
+    public Movie getMovie(@RequestParam String movieName){
+        return catalogService.getMovie(movieName);
+    }
+
+    @GetMapping("/getMovieById")
+    public Movie findById(Long id){
+        return catalogService.findById(id);
     }
 }

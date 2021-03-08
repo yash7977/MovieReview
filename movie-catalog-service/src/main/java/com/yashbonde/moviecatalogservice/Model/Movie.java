@@ -1,4 +1,4 @@
-package com.yashbonde.movieinfoservice.Model;
+package com.yashbonde.moviecatalogservice.Model;
 
 public class Movie {
 
